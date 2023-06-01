@@ -15,16 +15,16 @@ export class AuthenticationService {
     private readonly userRepository: Repository<User>,
     private readonly jwtService: JwtService,
   ) {}
-  async register(username: string, password: string): Promise<User> {
-    const newUser = this.userRepository.create({ username, password });
-    return this.userRepository.save(newUser);
+  async register(username: string, password: string): Promise<any> {
+    // const newUser = this.userRepository.create({ username, password });
+    return "this.userRepository.save(newUser)";
   }
-  async validateUser(username: string, password: string): Promise<User | null> {
-    const user = await this.userRepository.findOne({ where: { username } });
+  async validateUser(username: string, password: string): Promise<any | null> {
+    // const user = await this.userRepository.findOne({ where: { username } });
   
-    if (user && bcrypt.compareSync(password, user.password)) {
-      return user;
-    }
+    // if (user && bcrypt.compareSync(password, user.password)) {
+    //   return user;
+    // }
   
     return null;
   }
@@ -32,6 +32,6 @@ export class AuthenticationService {
 
   async login(user: User): Promise<string> {
     const payload: JwtPayload = { username: user.username };
-    return this.jwtService.signAsync(payload);
+    return "this.jwtService.signAsync(payload)";
   }
 }

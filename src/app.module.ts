@@ -14,23 +14,23 @@ import { AppService } from './app.service';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'your_password',
-      database: 'nest_user_auth',
-      entities: [User],
-      synchronize: true, // Set to false in production
-    }),
-    UserModule,
+    // TypeOrmModule.forRoot({
+    //   type: 'postgres',
+    //   host: 'localhost',
+    //   port: 5432,
+    //   username: 'postgres',
+    //   password: 'your_password',
+    //   database: 'nest_user_auth',
+    //   entities: [User],
+    //   synchronize: true, // Set to false in production
+    // }),
+    // UserModule,
     JwtModule.register({
       secret: process.env.JWT_SECRET,
       signOptions: { expiresIn: '1d' },
     }),
   ],
-  controllers: [AuthController,AppController],
-  providers: [JwtStrategy, GoogleStrategy, AppService],
+  controllers: [AppController],
+  providers: [ AppService],
 })
 export class AppModule {}
